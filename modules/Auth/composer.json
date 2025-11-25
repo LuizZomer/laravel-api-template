@@ -1,0 +1,9 @@
+{
+  "name": "app/auth-module",
+  "description": "Auth bounded context",
+  "autoload": {
+    "psr-4": {
+      "Modules\\Auth\\": ""
+    }
+  }
+}
