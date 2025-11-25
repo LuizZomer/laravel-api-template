@@ -1,0 +1,9 @@
+{
+  "name": "app/users-module",
+  "description": "Users bounded context",
+  "autoload": {
+    "psr-4": {
+      "Modules\\Users\\": ""
+    }
+  }
+}

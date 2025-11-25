@@ -1,0 +1,36 @@
+<?php
+
+use App\Exceptions\EmailAlreadyExistsException;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Validation\ValidationException;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions): void {
+
+        $exceptions->renderable(function (ValidationException $e, $request) {
+            $errors = $e->errors();
+
+            return response()->json([
+                'message' => collect($errors)->flatten()->first(),
+                'errors' => $errors,
+            ], $e->status);
+        });
+
+       $exceptions->renderable(
+        fn (EmailAlreadyExistsException $e, $request) =>
+            response()->json([
+                'type' => 'EMAIL_ALREADY_EXISTS',
+                'message' => $e->getMessage(),
+            ], $e->getCode())
+        );
+    })->create();
