@@ -3,6 +3,7 @@
 namespace Modules\Auth\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Modules\Auth\Application\UseCases\LoginUseCase;
 use Modules\Auth\Http\Requests\LoginRequest;
 
@@ -22,5 +23,9 @@ class AuthController extends Controller
         $token = $this->loginUseCase->execute($dto);
 
         return response()->json(['content' => ['token' => $token]]);
+    }
+
+    public function me() {
+        return response()->json(['content'=> ['user' => Auth::user()]]);
     }
 }
