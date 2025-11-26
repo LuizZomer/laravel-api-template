@@ -6,5 +6,5 @@ use Illuminate\Support\Facades\Route;
 use Modules\Auth\Http\Controllers\Api\AuthController;
 
 Route::prefix('auth')->group(function () {
-    Route::get('/', [AuthController::class,'login'])->name('login');
+    Route::post('/', [AuthController::class, 'login'])->name('login');
 });

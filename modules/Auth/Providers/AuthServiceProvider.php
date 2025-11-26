@@ -4,10 +4,12 @@ namespace Modules\Auth\Providers;
 
 use Carbon\Laravel\ServiceProvider;
 use Modules\Auth\Domain\Services\TokenService;
-use Modules\Auth\Infrastruture\Services\SanctumTokenService;
+use Modules\Auth\Infrastructure\Services\SanctumTokenService;
 
-class AuthServiceProvider extends ServiceProvider {
-    public function boot() {
+class AuthServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
         $this->loadApiRoutes();
         $this->loadWebRoutes();
     }
@@ -20,18 +22,20 @@ class AuthServiceProvider extends ServiceProvider {
         );
     }
 
-    private function loadApiRoutes() {
+    private function loadApiRoutes()
+    {
         $api = __DIR__ . '/../Http/Routes/api.php';
 
-        if(file_exists($api)) {
+        if (file_exists($api)) {
             $this->loadRoutesFrom($api);
         }
     }
 
-    private function loadWebRoutes() {
+    private function loadWebRoutes()
+    {
         $web = __DIR__ . '/../Http/Routes/web.php';
 
-        if(file_exists($web)) {
+        if (file_exists($web)) {
             $this->loadRoutesFrom($web);
         }
     }

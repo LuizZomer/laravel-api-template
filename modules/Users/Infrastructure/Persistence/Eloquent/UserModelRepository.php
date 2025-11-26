@@ -2,7 +2,7 @@
 
 namespace Modules\Users\Infrastructure\Persistence\Eloquent;
 
-use Modules\Users\Infrastruture\Persistence\Eloquent\UserModel;
+use Modules\Users\Infrastructure\Persistence\Eloquent\UserModel;
 
 class UserModelRepository
 {

@@ -1,23 +1,27 @@
 <?php
 
-namespace Modules\Users\Infrastruture\Persistence\Eloquent;
+namespace Modules\Users\Infrastructure\Persistence\Eloquent;
 
 use Modules\Users\Domain\Entities\User;
 use Modules\Users\Domain\Repositories\UserRepositoryInterface;
-use Modules\Users\Infrastruture\Mappers\CreateUserMapper;
+use Modules\Users\Infrastructure\Mappers\CreateUserMapper;
+use Modules\Users\Infrastructure\Mappers\UserFindByMapper;
 
-class UserRepository implements UserRepositoryInterface {
+class UserRepository implements UserRepositoryInterface
+{
     protected UserModel $model;
 
-    public function __construct(UserModel $model) {
+    public function __construct(UserModel $model)
+    {
         $this->model = $model;
     }
 
-    public function create(User $user): User {
+    public function create(User $user): User
+    {
         $newUser = $this->model->create([
             'name' => $user->name(),
             'email' => $user->email(),
-            'password'=> $user->password(),
+            'password' => $user->password(),
         ]);
 
         return CreateUserMapper::modelToEntity($newUser);
@@ -31,6 +35,6 @@ class UserRepository implements UserRepositoryInterface {
             return null;
         }
 
-        return CreateUserMapper::modelToEntity($model);
+        return UserFindByMapper::modelToEntity($model);
     }
 }

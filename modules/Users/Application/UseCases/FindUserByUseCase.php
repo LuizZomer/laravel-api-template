@@ -2,12 +2,8 @@
 
 namespace Modules\Users\Application\UseCases;
 
-use App\Exceptions\EmailAlreadyExistsException;
-use App\Shared\Domain\Services\PasswordHasher;
-use Modules\Users\Application\Dto\CreateUserDto;
 use Modules\Users\Domain\Entities\User;
 use Modules\Users\Domain\Repositories\UserRepositoryInterface;
-use Modules\Users\Infrastruture\Persistence\Eloquent\UserModel;
 
 class FindUserByUseCase
 {
