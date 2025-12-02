@@ -5,6 +5,7 @@ namespace Modules\Auth\Providers;
 use Carbon\Laravel\ServiceProvider;
 use Modules\Auth\Domain\Services\TokenService;
 use Modules\Auth\Infrastructure\Services\SanctumTokenService;
+use Route;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         $api = __DIR__ . '/../Http/Routes/api.php';
 
         if (file_exists($api)) {
+            Route::prefix('api')->group(function () use ($api) {
             $this->loadRoutesFrom($api);
+            });
         }
     }
 

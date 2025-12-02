@@ -5,6 +5,7 @@ namespace Modules\Users\Providers;
 use Carbon\Laravel\ServiceProvider;
 use Modules\Users\Domain\Repositories\UserRepositoryInterface;
 use Modules\Users\Infrastructure\Persistence\Eloquent\UserRepository;
+use Route;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,9 @@ class UserServiceProvider extends ServiceProvider
         $api = __DIR__ . '/../Http/Routes/api.php';
 
         if (file_exists($api)) {
-            $this->loadRoutesFrom($api);
+            Route::prefix('api')->group(function () use ( $api ) {
+                $this->loadRoutesFrom($api);
+            });
         }
     }
 

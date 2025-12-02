@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Infraestruture\Service;
+namespace App\Shared\Infraestructure\Service;
 
 use App\Shared\Domain\Services\PasswordHasher;
 use Hash;
