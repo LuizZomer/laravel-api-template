@@ -36,10 +36,11 @@ class LoginUseCase
 
     public function validateUser(?User $user, $password)
     {
+        if (!$user) return $this->throwInvalidCredentials();
+        
         $correctPassword = $this->passwordHasher->verify($password, $user->password());
-        if (!$user || !$correctPassword) {
-            return $this->throwInvalidCredentials();
-        }
+        
+        if(!$correctPassword) return $this->throwInvalidCredentials();
     }
 
     public function throwInvalidCredentials()

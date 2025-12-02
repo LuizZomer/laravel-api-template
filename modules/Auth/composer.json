@@ -5,5 +5,12 @@
     "psr-4": {
       "Modules\\Auth\\": ""
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Modules\\Auth\\Providers\\AuthServiceProvider"
+      ]
+    }
   }
 }

@@ -5,5 +5,12 @@
     "psr-4": {
       "Modules\\Users\\": ""
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Modules\\Users\\Providers\\UserServiceProvider"
+      ]
+    }
   }
 }
