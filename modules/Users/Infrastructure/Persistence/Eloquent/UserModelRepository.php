@@ -13,7 +13,7 @@ class UserModelRepository
         $this->model = $model;
     }
 
-    public function findBy(string $column, string $value): ?UserModel
+    public function findBy(string $column, mixed $value): ?UserModel
     {
         $model = $this->model->where($column, $value)->first();
 

@@ -8,7 +8,7 @@ class User
         private string $name,
         private string $email,
         private ?string $password = null,
-        private ?string $id = null
+        private ?int $id = null
     ) {
     }
 
@@ -24,7 +24,7 @@ class User
     {
         return $this->password;
     }
-    public function id(): ?string
+    public function id(): ?int
     {
         return $this->id;
     }
