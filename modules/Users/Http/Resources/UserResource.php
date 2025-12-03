@@ -2,25 +2,19 @@
 
 namespace Modules\Users\Http\Resources;
 
-use JsonSerializable;
-use Modules\Users\Domain\Entities\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource implements JsonSerializable
+class UserResource extends JsonResource
 {
-    private User $user;
-
-    public function __construct(User $user)
+    public function toArray(Request $request): array
     {
-        $this->user = $user;
-    }
+        $user = $this->resource;
 
-
-    public function jsonSerialize(): array
-    {
         return [
-            'id' => $this->user->id(),
-            'name' => $this->user->name(),
-            'email' => $this->user->email(),
+            'id' => $user->id(),
+            'name' => $user->name(),
+            'email' => $user->email(),
         ];
     }
 }

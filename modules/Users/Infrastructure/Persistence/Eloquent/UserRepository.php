@@ -6,6 +6,7 @@ use Modules\Users\Domain\Entities\User;
 use Modules\Users\Domain\Repositories\UserRepositoryInterface;
 use Modules\Users\Infrastructure\Mappers\CreateUserMapper;
 use Modules\Users\Infrastructure\Mappers\UserFindByMapper;
+use Modules\Users\Infrastructure\Mappers\UserMapper;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -24,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
             'password' => $user->password(),
         ]);
 
-        return CreateUserMapper::modelToEntity($newUser);
+        return UserMapper::toDomain($newUser);
     }
 
     public function findBy(string $column, string $value): ?User
@@ -35,6 +36,6 @@ class UserRepository implements UserRepositoryInterface
             return null;
         }
 
-        return UserFindByMapper::modelToEntity($model);
+        return UserMapper::toDomain($model);
     }
 }
